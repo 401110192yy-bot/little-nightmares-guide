@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小小梦魇攻略站 - Little Nightmares Guide</title>
+    <style>
+        /* ========== 基础样式 ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', '微软雅黑', sans-serif;
+            background-color: #0a0a0a;
+            color: #d4d4d4;
+            line-height: 1.8;
+        }
+
+        /* ========== 顶部导航 ========== */
+        .navbar {
+            background: linear-gradient(180deg, #1a0a0a 0%, #0a0a0a 100%);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #8b0000;
+            box-shadow: 0 4px 20px rgba(139, 0, 0, 0.5);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff4444;
+            text-shadow: 0 0 10px rgba(255, 68, 68, 0.5);
+        }
+
+        .logo span {
+            color: #ffd700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #ccc;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff4444;
+            background: rgba(139, 0, 0, 0.3);
+        }
+
+        /* ========== 英雄区域 ========== */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23111" width="1200" height="600"/><text x="600" y="300" text-anchor="middle" fill="%23333" font-size="40">Little Nightmares</text></svg>');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 20px;
+            text-align: center;
+            border-bottom: 3px solid #8b0000;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            color: #ff4444;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(255, 68, 68, 0.6);
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #aaa;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #8b0000, #ff4444);
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 18px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.5);
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(255, 68, 68, 0.7);
+        }
+
+        /* ========== 主内容区 ========== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            color: #ff4444;
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #8b0000;
+        }
+
+        /* ========== 游戏简介 ========== */
+        .about-game {
+            background: #111;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            border-left: 5px solid #8b0000;
+        }
+
+        .about-game h2 {
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+
+        .game-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .info-item {
+            background: #1a1a1a;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+
+        .info-item .label {
+            color: #888;
+            font-size: 14px;
+        }
+
+        .info-item .value {
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* ========== 卡片网格 ========== */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: #151515;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #2a2a2a;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #8b0000;
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.3);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #1a0a0a, #2a1515);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-body h3 {
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+
+        .card-body p {
+            color: #999;
+            font-size: 14px;
+        }
+
+        /* ========== 攻略内容 ========== */
+        .guide-section {
+            margin-bottom: 40px;
+        }
+
+        .guide-card {
+            background: #111;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border: 1px solid #2a2a2a;
+        }
+
+        .guide-card h3 {
+            color: #ff4444;
+            font-size: 22px;
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 4px solid #8b0000;
+        }
+
+        .guide-card ul {
+            list-style: none;
+            padding-left: 30px;
+        }
+
+        .guide-card li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .guide-card li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #ff4444;
+        }
+
+        .tip-box {
+            background: #1a1a00;
+            border-left: 4px solid #ffd700;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .tip-box strong {
+            color: #ffd700;
+        }
+
+        .danger-box {
+            background: #1a0000;
+            border-left: 4px solid #ff4444;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .danger-box strong {
+            color: #ff4444;
+        }
+
+        /* ========== 角色介绍 ========== */
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .character-card {
+            background: #111;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #2a2a2a;
+            transition: all 0.3s;
+        }
+
+        .character-card:hover {
+            border-color: #8b0000;
+            box-shadow: 0 5px 20px rgba(139, 0, 0, 0.3);
+        }
+
+        .character-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #8b0000, #1a1a1a);
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+
+        .character-card h4 {
+            color: #ffd700;
+            margin-bottom: 8px;
+        }
+
+        .character-card p {
+            color: #888;
+            font-size: 14px;
+        }
+
+        /* ========== 隐藏要素 ========== */
+        .secret-item {
+            background: #0a0a15;
+            border: 1px solid #2a2a4a;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            transition: all 0.3s;
+        }
+
+        .secret-item:hover {
+            border-color: #4a4aff;
+            box-shadow: 0 0 15px rgba(74, 74, 255, 0.2);
+        }
+
+        .secret-item h4 {
+            color: #6a6aff;
+            margin-bottom: 10px;
+        }
+
+        /* ========== 页脚 ========== */
+        .footer {
+            background: #0a0a0a;
+            border-top: 2px solid #8b0000;
+            padding: 30px 20px;
+            text-align: center;
+            color: #555;
+        }
+
+        .footer a {
+            color: #ff4444;
+            text-decoration: none;
+        }
+
+        /* ========== 响应式 ========== */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ========== 动画 ========== */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card, .guide-card, .character-card, .secret-item {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        /* ========== 标签 ========== */
+        .tag {
+            display: inline-block;
+            background: #8b0000;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            margin-right: 5px;
+        }
+
+        .tag-yellow {
+            background: #ffd700;
+            color: #000;
+        }
+
+        .tag-blue {
+            background: #4a4aff;
+        }
+
+        /* ========== 手风琴 ========== */
+        .accordion {
+            margin-bottom: 15px;
+        }
+
+        .accordion-header {
+            background: #1a1a1a;
+            padding: 15px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #2a2a2a;
+            transition: all 0.3s;
+        }
+
+        .accordion-header:hover {
+            background: #222;
+            border-color: #8b0000;
+        }
+
+        .accordion-content {
+            background: #111;
+            padding: 20px;
+            border-radius: 0 0 8px 8px;
+            border: 1px solid #2a2a2a;
+            border-top: none;
+            display: none;
+        }
+
+        .accordion-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">👶 小小梦魇<span>攻略站</span></div>
+            <ul class="nav-links">
+                <li><a href="#about">游戏简介</a></li>
+                <li><a href="#guides">全关卡攻略</a></li>
+                <li><a href="#characters">角色介绍</a></li>
+                <li><a href="#secrets">隐藏要素</a></li>
+                <li><a href="#tips">技巧大全</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <header class="hero">
+        <h1>🌙 小小梦魇攻略站</h1>
+        <p>欢迎来到《小小梦魇》的黑暗世界！这里有你需要的全部攻略、技巧和解密指南，帮助你逃离每一个噩梦。</p>
+        <a href="#guides" class="hero-btn">开始浏览攻略 →</a>
+    </header>
+
+    <div class="container">
+        <!-- 游戏简介 -->
+        <section id="about" class="about-game">
+            <h2>🎮 游戏简介</h2>
+            <p><strong>小小梦魇（Little Nightmares）</strong>是由波兰游戏开发商 <strong>Tarsier Studios</strong> 制作、<strong>Bandai Namco</strong> 发行的一款惊悚冒险解谜游戏。玩家将扮演一个小女孩"六（Six）"，在一个个充满诡异怪物的世界中求生并寻找出路。</p>
+            
+            <div class="game-info-grid">
+                <div class="info-item">
+                    <div class="label">开发商</div>
+                    <div class="value">Tarsier Studios</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">发行商</div>
+                    <div class="value">Bandai Namco</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">发售日期</div>
+                    <div class="value">2017年4月</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">游戏类型</div>
+                    <div class="value">平台解谜</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">平台</div>
+                    <div class="value">PC/主机/Switch</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">续作</div>
+                    <div class="value">小小梦魇2</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 攻略分类卡片 -->
+        <h2 class="section-title">📚 攻略分类</h2>
+        <div class="card-grid">
+            <div class="card" onclick="document.getElementById('guides').scrollIntoView({behavior:'smooth'})">
+                <div class="card-header">
+                    <div class="card-icon">🗺️</div>
+                </div>
+                <div class="card-body">
+                    <h3>全关卡攻略</h3>
+                    <p>从薄暮镇到巨人的城堡，一步步带你通关每一关</p>
+                    <br>
+                    <span class="tag">主线</span>
+                    <span class="tag tag-yellow">详细</span>
+                </div>
+            </div>
+
+            <div class="card" onclick="document.getElementById('characters').scrollIntoView({behavior:'smooth'})">
+                <div class="card-header">
+                    <div class="card-icon">👤</div>
+                </div>
+                <div class="card-body">
+                    <h3>角色介绍</h3>
+                    <p>了解游戏中出现的每一个怪物和角色的背景故事</p>
+                    <br>
+                    <span class="tag tag-blue">剧情</span>
+                </div>
+            </div>
+
+            <div class="card" onclick="document.getElementById('secrets').scrollIntoView({behavior:'smooth'})">
+                <div class="card-header">
+                    <div class="card-icon">🔍</div>
+                </div>
+                <div class="card-body">
+                    <h3>隐藏要素</h3>
+                    <p>收集所有黄色雨衣、发现隐藏房间和彩蛋</p>
+                    <br>
+                    <span class="tag">收集</span>
+                    <span class="tag tag-yellow">彩蛋</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 全关卡攻略 -->
+        <section id="guides" class="guide-section">
+            <h2 class="section-title">🗺️ 全关卡攻略</h2>
+
+            <!-- 第一章 薄暮镇 -->
+            <div class="guide-card">
+                <h3>第一章：薄暮镇（The Maw）</h3>
+                <p>这是游戏的第一个也是唯一一个主要场景——一艘巨大的远洋渔船。船上充满了诡异的厨师和食客，你需要利用智慧和隐蔽来逃脱。</p>
+                
+                <div class="accordion">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>📍 第一部分：进入薄暮镇</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>游戏开始时，六（Six）被一个穿着黄色雨衣的人（Mono）拉进薄暮镇</li>
+                            <li>沿着走廊一直往前走，注意躲避巡逻的船员</li>
+                            <li>第一个需要躲避的是在房间里吃食的船员，保持静止不要动</li>
+                            <li>找到通风管道入口，爬进去进入下一个区域</li>
+                        </ul>
+                        <div class="tip-box">
+                            <strong>💡 提示：</strong>遇到船员时，可以躲在桌子底下或者保持蹲伏状态，他们不会注意到你。
+                        </div>
+                    </div>
+
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>📍 第二部分：餐厅区域</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>穿过厨房，你会看到船员们在用餐</li>
+                            <li>利用餐车作为掩护，推动餐车可以阻挡船员的视线</li>
+                            <li>注意听声音——船员的脚步声会告诉你他们的方向</li>
+                            <li>找到餐厅后面的门，进入下一个区域</li>
+                        </ul>
+                        <div class="danger-box">
+                            <strong>⚠️ 危险：</strong>餐厅里有大量的船员，一定要小心！不要发出太大声音。
+                        </div>
+                    </div>
+
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>📍 第三部分：船长室</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>继续前进，穿过船员的生活区</li>
+                            <li>你会经过一个有很多床铺的房间，注意躲藏点</li>
+                            <li>找到通往船长室的通道</li>
+                            <li>在船长室里找到钥匙卡，打开上层区域的门</li>
+                        </ul>
+                    </div>
+
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>📍 第四部分：逃脱</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>使用钥匙卡打开上层的门</li>
+                            <li>沿着甲板前进，注意躲避监工的视线</li>
+                            <li>找到信号发射器，启动它发出求救信号</li>
+                            <li>乘坐电梯下降，最终找到逃脱的船</li>
+                        </ul>
+                        <div class="tip-box">
+                            <strong>💡 提示：</strong>最后逃脱时，记得回头看一下——你会看到薄暮镇沉入海底的画面。
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第二章 小梦魇 -->
+            <div class="guide-card">
+                <h3>第二章：小梦魇（Low Town）</h3>
+                <p>这是《小小梦魇2》的第一个章节。六和 Mono 一起逃离薄暮镇后，被困在了一个神秘的小镇里。</p>
+                
+                <div class="accordion">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>📍 第一部分：初到小镇</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>六和 Mono 醒来后发现自己在一条河边</li>
+                            <li>沿着河边前进，找到进入小镇的路</li>
+                            <li>注意收集沿途的硬币，可以在后续使用</li>
+                            <li>学会双人合作——Mono 可以帮你够到高处的东西</li>
+                        </ul>
+                    </div>
+
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>📍 第二部分：电视人宅邸</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>找到一座废弃的公寓楼</li>
+                            <li>电视人（The Television Man）住在这里，他的头是一个老式电视机</li>
+                            <li>利用 Mono 的帽子能力吸引电视人的注意力</li>
+                            <li>找到并戴上不同的帽子来通过不同的区域</li>
+                        </ul>
+                        <div class="tip-box">
+                            <strong>💡 提示：</strong>把帽子扔出去可以吸引电视人的注意，为你争取逃跑时间。
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第三章 电波塔 -->
+            <div class="guide-card">
+                <h3>第三章：电波塔（The TV Tower）</h3>
+                <p>通往电视人巢穴深处的道路，充满了谜题和危险。</p>
+                
+                <div class="accordion">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>📍 爬上电波塔</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>找到通往电波塔底部的入口</li>
+                            <li>解决一系列平台跳跃谜题</li>
+                            <li>注意躲避电视人派出的小电视机器人</li>
+                            <li>到达塔顶，面对电视人</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 角色介绍 -->
+        <section id="characters">
+            <h2 class="section-title">👤 角色介绍</h2>
+            <div class="character-grid">
+                <div class="character-card">
+                    <div class="character-avatar">👧</div>
+                    <h4>六（Six）</h4>
+                    <p>游戏的主角，一个穿着黄色雨衣的小女孩。她安静、勇敢，在黑暗中独自求生。她的身世成谜，但似乎有着特殊的命运。</p>
+                    <br>
+                    <span class="tag">主角</span>
+                </div>
+
+                <div class="character-card">
+                    <div class="character-avatar">🧢</div>
+                    <h4>Mono</h4>
+                    <p>《小小梦魇2》的新主角，一个戴着棕色帽子的小男孩。他和六一起冒险，拥有将画中的东西变现实的能力。</p>
+                    <br>
+                    <span class="tag">主角</span>
+                    <span class="tag tag-yellow">二代</span>
+                </div>
+
+                <div class="character-card">
+                    <div class="character-avatar">👨‍🍳</div>
+                    <h4>厨师（The Chef）</h4>
+                    <p>薄暮镇的主要反派，一个巨大肥胖的厨师。他把船员和乘客当作食物，用刀叉进行烹饪。是游戏中最恐怖的敌人之一。</p>
+                    <br>
+                    <span class="tag tag-blue">反派</span>
+                </div>
+
+                <div class="character-card">
+                    <div class="character-avatar">👁️</div>
+                    <h4>监工（The Janitor）</h4>
+                    <p>薄暮镇的清洁工，一个瘦高的怪物。他用拖把攻击玩家，视力很差但听力敏锐。在船舱下层巡逻。</p>
+                    <br>
+                    <span class="tag tag-blue">敌人</span>
+                </div>
+
+                <div class="character-card">
+                    <div class="character-avatar">📺</div>
+                    <h4>电视人（The Television Man）</h4>
+                    <p>住在电波塔里的神秘角色，头部是一个老式电视机。他通过电视屏幕控制着一切，是《小小梦魇2》中的重要角色。</p>
+                    <br>
+                    <span class="tag tag-yellow">关键角色</span>
+                    <span class="tag tag-blue">二代</span>
+                </div>
+
+                <div class="character-card">
+                    <div class="character-avatar">👩</div>
+                    <h4>夫人（The Lady）</h4>
+                    <p>出现在薄暮镇高层的神秘女性角色，穿着优雅，举止怪异。她的真实身份和目的仍然是个谜。</p>
+                    <br>
+                    <span class="tag tag-blue">神秘角色</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 隐藏要素 -->
+        <section id="secrets">
+            <h2 class="section-title">🔍 隐藏要素与收集</h2>
+
+            <div class="secret-item">
+                <h4>🟡 黄色雨衣收集</h4>
+                <p>在游戏中可以找到多件黄色雨衣，它们不仅仅是外观变化：</p>
+                <ul>
+                    <li><strong>初始雨衣：</strong>游戏开始时穿着的标准雨衣</li>
+                    <li><strong>隐藏雨衣：</strong>在某些秘密房间可以找到额外的黄色雨衣</li>
+                    <li><strong>收集全部：</strong>集齐所有雨衣可以获得特殊成就</li>
+                </ul>
+            </div>
+
+            <div class="secret-item">
+                <h4>🪙 硬币收集</h4>
+                <p>在《小小梦魇2》中散布着许多硬币：</p>
+                <ul>
+                    <li>硬币可以在自动售货机中使用换取道具</li>
+                    <li>有些硬币藏在不容易发现的角落</li>
+                    <li>收集全部硬币可以解锁特殊奖励</li>
+                </ul>
+                <div class="tip-box">
+                    <strong>💡 提示：</strong>仔细检查每个房间的角落和高处，硬币通常藏在隐蔽的地方。
+                </div>
+            </div>
+
+            <div class="secret-item">
+                <h4>🖼️ 画中的世界</h4>
+                <p>在《小小梦魇2》中，Mono 可以把画中的东西变现实：</p>
+                <ul>
+                    <li>找到墙上的画作，Mono 可以用蜡笔将其变为现实</li>
+                    <li>画中可能出现梯子、钥匙或其他道具</li>
+                    <li>善用这个能力来解决谜题</li>
+                </ul>
+            </div>
+
+            <div class="secret-item">
+                <h4>🎭 隐藏结局</h4>
+                <p>《小小梦魇1》有一个令人震惊的隐藏真相：</p>
+                <ul>
+                    <li>在游戏结尾，六并没有真正逃脱</li>
+                    <li>她会变成新的"夫人"，等待下一个受害者的到来</li>
+                    <li>这个结局为续作埋下了伏笔</li>
+                </ul>
+                <div class="danger-box">
+                    <strong>⚠️ 剧透警告：</strong>如果你还没有通关，建议先自己体验这个结局！
+                </div>
+            </div>
+        </section>
+
+        <!-- 技巧大全 -->
+        <section id="tips">
+            <h2 class="section-title">💡 技巧大全</h2>
+
+            <div class="guide-card">
+                <h3>🏃 移动技巧</h3>
+                <ul>
+                    <li><strong>蹲下行走：</strong>按 Shift 键可以蹲下，在低矮空间通行并减少被发现的机会</li>
+                    <li><strong>奔跑：</strong>按 Ctrl 键可以快速奔跑，但会产生噪音</li>
+                    <li><strong>攀爬：</strong>靠近可攀爬的边缘会自动抓住，按住方向键向上</li>
+                    <li><strong>游泳：</strong>在水中移动较慢，注意氧气量</li>
+                </ul>
+            </div>
+
+            <div class="guide-card">
+                <h3>🎯 躲避技巧</h3>
+                <ul>
+                    <li><strong>保持安静：</strong>大多数敌人靠听觉发现你，蹲下走更安静</li>
+                    <li><strong>利用掩体：</strong>桌子、窗帘、箱子都可以作为掩护</li>
+                    <li><strong>观察巡逻路线：</strong>先观察敌人的行动规律再移动</li>
+                    <li><strong>制造噪音引开敌人：</strong>扔物品可以吸引敌人的注意力</li>
+                </ul>
+                <div class="tip-box">
+                    <strong>💡 高级技巧：</strong>在关键时刻，你可以选择正面对抗某些敌人，但这通常很危险。
+                </div>
+            </div>
+
+            <div class="guide-card">
+                <h3>🧩 解谜技巧</h3>
+                <ul>
+                    <li><strong>仔细观察环境：</strong>很多线索隐藏在墙壁、地板上</li>
+                    <li><strong>利用光影：</strong>有些谜题需要在黑暗中才能看到</li>
+                    <li><strong>记住图案：</strong>密码锁的图案需要记住并按正确顺序输入</li>
+                    <li><strong>双人配合：</strong>在二代中，六和 Mono 需要互相配合</li>
+                </ul>
+            </div>
+
+            <div class="guide-card">
+                <h3>💾 存档技巧</h3>
+                <ul>
+                    <li>游戏会在关键节点自动保存</li>
+                    <li>在安全区域可以多存几次档</li>
+                    <li>遇到困难的地方建议手动存档</li>
+                    <li>如果卡关了，可以尝试读档换个思路</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <p>🌙 小小梦魇攻略站 | Little Nightmares Fan Guide</p>
+        <p style="margin-top: 10px;">本站为非官方粉丝站点，与 Tarsier Studios 和 Bandai Namco 无关</p>
+        <p style="margin-top: 10px; color: #333;">© 2026 Made with ❤️ by a Little Nightmares fan</p>
+    </footer>
+
+    <script>
+        // 手风琴效果
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            const arrow = header.querySelector('span:last-child');
+            
+            // 切换当前项
+            content.classList.toggle('active');
+            
+            if (content.classList.contains('active')) {
+                arrow.textContent = '▲';
+            } else {
+                arrow.textContent = '▼';
+            }
+        }
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // 页面加载动画
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
