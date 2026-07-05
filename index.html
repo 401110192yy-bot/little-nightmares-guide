@@ -3,76 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>小小梦魇攻略站 - Little Nightmares Guide</title>
+    <title>小小梦魇攻略站 - Little Nightmares Complete Guide</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Microsoft YaHei', '微软雅黑', sans-serif; background: #0a0a0a; color: #d4d4d4; line-height: 1.8; }
         .navbar { background: linear-gradient(180deg, #1a0a0a 0%, #0a0a0a 100%); padding: 15px 0; position: sticky; top: 0; z-index: 1000; border-bottom: 2px solid #8b0000; box-shadow: 0 4px 20px rgba(139,0,0,0.5); }
-        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
-        .logo { font-size: 24px; font-weight: bold; color: #ff4444; text-shadow: 0 0 10px rgba(255,68,68,0.5); }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; flex-wrap: wrap; }
+        .logo { font-size: 22px; font-weight: bold; color: #ff4444; text-shadow: 0 0 10px rgba(255,68,68,0.5); }
         .logo span { color: #ffd700; }
-        .nav-links { display: flex; gap: 25px; list-style: none; }
-        .nav-links a { color: #ccc; text-decoration: none; padding: 8px 15px; border-radius: 5px; transition: all 0.3s; }
+        .nav-links { display: flex; gap: 15px; list-style: none; flex-wrap: wrap; }
+        .nav-links a { color: #ccc; text-decoration: none; padding: 6px 12px; border-radius: 5px; transition: all 0.3s; font-size: 14px; }
         .nav-links a:hover { color: #ff4444; background: rgba(139,0,0,0.3); }
-        .hero { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), #111; padding: 100px 20px; text-align: center; border-bottom: 3px solid #8b0000; }
-        .hero h1 { font-size: 48px; color: #ff4444; margin-bottom: 20px; text-shadow: 0 0 20px rgba(255,68,68,0.6); }
-        .hero p { font-size: 20px; color: #aaa; max-width: 700px; margin: 0 auto 30px; }
-        .hero-btn { display: inline-block; background: linear-gradient(135deg, #8b0000, #ff4444); color: white; padding: 15px 40px; text-decoration: none; border-radius: 30px; font-size: 18px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(139,0,0,0.5); }
+        .hero { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.85)), url('images/ln1-maw.jpg'); background-size: cover; background-position: center; padding: 80px 20px; text-align: center; border-bottom: 3px solid #8b0000; }
+        .hero h1 { font-size: 42px; color: #ff4444; margin-bottom: 15px; text-shadow: 0 0 20px rgba(255,68,68,0.6); }
+        .hero p { font-size: 18px; color: #ddd; max-width: 700px; margin: 0 auto 25px; }
+        .hero-btn { display: inline-block; background: linear-gradient(135deg, #8b0000, #ff4444); color: white; padding: 14px 35px; text-decoration: none; border-radius: 30px; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(139,0,0,0.5); }
         .hero-btn:hover { transform: translateY(-3px); box-shadow: 0 6px 25px rgba(255,68,68,0.7); }
         .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
-        .section-title { font-size: 32px; color: #ff4444; text-align: center; margin-bottom: 40px; padding-bottom: 15px; border-bottom: 2px solid #8b0000; }
-        .about-game { background: #111; padding: 30px; border-radius: 10px; margin-bottom: 40px; border-left: 5px solid #8b0000; }
-        .about-game h2 { color: #ffd700; margin-bottom: 15px; }
-        .game-info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
-        .info-item { background: #1a1a1a; padding: 15px; border-radius: 8px; border: 1px solid #333; }
-        .info-item .label { color: #888; font-size: 14px; }
-        .info-item .value { color: #fff; font-size: 18px; font-weight: bold; }
-        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-bottom: 40px; }
-        .card { background: #151515; border-radius: 10px; overflow: hidden; border: 1px solid #2a2a2a; transition: all 0.3s; cursor: pointer; }
-        .card:hover { transform: translateY(-5px); border-color: #8b0000; box-shadow: 0 10px 30px rgba(139,0,0,0.3); }
-        .card-header { background: linear-gradient(135deg, #1a0a0a, #2a1515); padding: 20px; text-align: center; }
-        .card-icon { font-size: 48px; margin-bottom: 10px; }
-        .card-body { padding: 20px; }
-        .card-body h3 { color: #ffd700; margin-bottom: 10px; }
-        .card-body p { color: #999; font-size: 14px; }
-        .guide-section { margin-bottom: 40px; }
-        .guide-card { background: #111; border-radius: 10px; padding: 25px; margin-bottom: 20px; border: 1px solid #2a2a2a; }
-        .guide-card h3 { color: #ff4444; font-size: 22px; margin-bottom: 15px; padding-left: 15px; border-left: 4px solid #8b0000; }
-        .guide-card h4 { color: #ffd700; font-size: 18px; margin: 15px 0 10px; padding-left: 10px; border-left: 3px solid #666; }
-        .guide-card ul { list-style: none; padding-left: 30px; }
-        .guide-card li { margin-bottom: 10px; padding-left: 20px; position: relative; }
+        .section-title { font-size: 28px; color: #ff4444; text-align: center; margin-bottom: 35px; padding-bottom: 15px; border-bottom: 2px solid #8b0000; }
+        .about-game { background: #111; padding: 25px; border-radius: 10px; margin-bottom: 35px; border-left: 5px solid #8b0000; }
+        .about-game h2 { color: #ffd700; margin-bottom: 12px; }
+        .game-info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 15px; }
+        .info-item { background: #1a1a1a; padding: 12px; border-radius: 8px; border: 1px solid #333; }
+        .info-item .label { color: #888; font-size: 13px; }
+        .info-item .value { color: #fff; font-size: 16px; font-weight: bold; }
+        .guide-section { margin-bottom: 35px; }
+        .guide-card { background: #111; border-radius: 10px; padding: 20px; margin-bottom: 20px; border: 1px solid #2a2a2a; }
+        .guide-card h3 { color: #ff4444; font-size: 20px; margin-bottom: 12px; padding-left: 12px; border-left: 4px solid #8b0000; }
+        .guide-card h4 { color: #ffd700; font-size: 17px; margin: 14px 0 10px; padding-left: 10px; border-left: 3px solid #666; }
+        .guide-card p { margin-bottom: 10px; }
+        .guide-card ul { list-style: none; padding-left: 25px; margin-bottom: 10px; }
+        .guide-card li { margin-bottom: 8px; padding-left: 18px; position: relative; }
         .guide-card li::before { content: "▸"; position: absolute; left: 0; color: #ff4444; }
-        .tip-box { background: #1a1a00; border-left: 4px solid #ffd700; padding: 15px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+        .tip-box { background: #1a1a00; border-left: 4px solid #ffd700; padding: 12px; margin: 12px 0; border-radius: 0 8px 8px 0; }
         .tip-box strong { color: #ffd700; }
-        .danger-box { background: #1a0000; border-left: 4px solid #ff4444; padding: 15px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+        .danger-box { background: #1a0000; border-left: 4px solid #ff4444; padding: 12px; margin: 12px 0; border-radius: 0 8px 8px 0; }
         .danger-box strong { color: #ff4444; }
-        .character-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 40px; }
-        .character-card { background: #111; border-radius: 10px; padding: 20px; text-align: center; border: 1px solid #2a2a2a; transition: all 0.3s; }
-        .character-card:hover { border-color: #8b0000; box-shadow: 0 5px 20px rgba(139,0,0,0.3); }
-        .character-avatar { width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, #8b0000, #1a1a1a); margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; font-size: 40px; }
-        .character-card h4 { color: #ffd700; margin-bottom: 8px; }
-        .character-card p { color: #888; font-size: 14px; }
-        .secret-item { background: #0a0a15; border: 1px solid #2a2a4a; border-radius: 10px; padding: 20px; margin-bottom: 15px; transition: all 0.3s; }
-        .secret-item:hover { border-color: #4a4aff; box-shadow: 0 0 15px rgba(74,74,255,0.2); }
-        .secret-item h4 { color: #6a6aff; margin-bottom: 10px; }
-        .tag { display: inline-block; background: #8b0000; color: white; padding: 3px 10px; border-radius: 15px; font-size: 12px; margin-right: 5px; }
+        .tag { display: inline-block; background: #8b0000; color: white; padding: 2px 8px; border-radius: 12px; font-size: 11px; margin-right: 4px; }
         .tag-yellow { background: #ffd700; color: #000; }
         .tag-blue { background: #4a4aff; }
-        .accordion-header { background: #1a1a1a; padding: 15px 20px; border-radius: 8px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border: 1px solid #2a2a2a; transition: all 0.3s; margin-bottom: 5px; }
-        .accordion-header:hover { background: #222; border-color: #8b0000; }
-        .accordion-content { background: #111; padding: 20px; border-radius: 0 0 8px 8px; border: 1px solid #2a2a2a; border-top: none; display: none; }
-        .accordion-content.active { display: block; }
-        .difficulty-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; margin-left: 10px; }
-        .diff-easy { background: #006400; color: #90EE90; }
-        .diff-medium { background: #8B4500; color: #FFD700; }
-        .diff-hard { background: #8b0000; color: #ff6666; }
-        .puzzle-box { background: #0a150a; border: 1px solid #2a4a2a; border-radius: 8px; padding: 15px; margin: 10px 0; }
-        .puzzle-box h5 { color: #90EE90; margin-bottom: 8px; }
-        .footer { background: #0a0a0a; border-top: 2px solid #8b0000; padding: 30px 20px; text-align: center; color: #555; }
+        .tag-green { background: #006400; color: #90EE90; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { padding: 10px 12px; border: 1px solid #333; text-align: left; }
+        th { background: #1a1a1a; color: #ffd700; }
+        td { background: #0f0f0f; }
+        .controls-table { background: #111; border-radius: 8px; overflow: hidden; margin: 15px 0; }
+        .controls-table th { background: #2a1515; }
+        .screenshot-box { margin: 15px 0; border-radius: 8px; overflow: hidden; border: 2px solid #2a2a2a; transition: all 0.3s; }
+        .screenshot-box:hover { border-color: #8b0000; box-shadow: 0 0 15px rgba(139,0,0,0.3); }
+        .screenshot-box img { width: 100%; height: auto; max-height: 400px; object-fit: cover; display: block; }
+        .screenshot-caption { background: #1a1a1a; padding: 8px 12px; font-size: 13px; color: #999; text-align: center; }
+        .hero-screenshot { margin: 20px 0; border-radius: 10px; overflow: hidden; border: 3px solid #8b0000; box-shadow: 0 0 30px rgba(139,0,0,0.3); }
+        .hero-screenshot img { width: 100%; height: auto; max-height: 500px; object-fit: cover; display: block; }
+        .hero-screenshot .caption { background: linear-gradient(135deg, #1a0a0a, #2a1515); padding: 12px; font-size: 15px; color: #ddd; text-align: center; }
+        .footer { background: #0a0a0a; border-top: 2px solid #8b0000; padding: 25px 20px; text-align: center; color: #555; }
         .footer a { color: #ff4444; text-decoration: none; }
-        @media (max-width: 768px) { .hero h1 { font-size: 32px; } .nav-links { flex-direction: column; gap: 10px; } .card-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) { .hero h1 { font-size: 28px; } .nav-links { gap: 8px; } .nav-links a { font-size: 12px; padding: 5px 8px; } .container { padding: 20px 15px; } .hero-screenshot img { max-height: 250px; } }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .card, .guide-card, .character-card, .secret-item { animation: fadeIn 0.6s ease-out; }
+        .guide-card { animation: fadeIn 0.6s ease-out; }
     </style>
 </head>
 <body>
@@ -81,19 +69,20 @@
             <div class="logo">👶 小小梦魇<span>攻略站</span></div>
             <ul class="nav-links">
                 <li><a href="#about">游戏简介</a></li>
+                <li><a href="#controls">操作说明</a></li>
                 <li><a href="#ln1">第一部攻略</a></li>
                 <li><a href="#ln2">第二部攻略</a></li>
+                <li><a href="#dlc">DLC攻略</a></li>
                 <li><a href="#characters">角色图鉴</a></li>
-                <li><a href="#secrets">隐藏要素</a></li>
-                <li><a href="#tips">技巧大全</a></li>
                 <li><a href="#lore">剧情解析</a></li>
+                <li><a href="#achievements">成就指南</a></li>
             </ul>
         </div>
     </nav>
 
     <header class="hero">
         <h1>🌙 小小梦魇攻略站</h1>
-        <p>欢迎来到《小小梦魇》的黑暗世界！这里有两部作品的完整攻略、深度剧情解析、角色分析和隐藏要素收集指南。</p>
+        <p>《小小梦魇》系列全攻略——两部作品完整流程、隐藏要素、角色解析和剧情深度解读。含游戏实景截图。</p>
         <a href="#ln1" class="hero-btn">开始浏览攻略 →</a>
     </header>
 
@@ -101,110 +90,214 @@
         <!-- 游戏简介 -->
         <section id="about" class="about-game">
             <h2>🎮 游戏系列简介</h2>
-            <p><strong>小小梦魇（Little Nightmares）</strong>是由波兰游戏开发商 <strong>Tarsier Studios</strong> 制作、<strong>Bandai Namco</strong> 发行的一款惊悚冒险解谜游戏系列。游戏以独特的暗黑童话风格、压抑的氛围和精妙的平台解谜设计而闻名。</p>
-            <p style="margin-top: 10px;">玩家将在一个充满诡异怪物的超现实世界中，扮演小小的主角，利用智慧和勇气求生。游戏以其出色的艺术风格和心理恐怖氛围获得了广泛好评。</p>
+            <p><strong>小小梦魇（Little Nightmares）</strong>是由波兰工作室 <strong>Tarsier Studios</strong> 开发、<strong>Bandai Namco</strong> 发行的惊悚解谜冒险游戏系列。</p>
+            <p style="margin-top: 8px;">原作原名<strong>《饥饿》（Hunger）</strong>，后更名为《小小梦魇》。游戏采用横向卷轴玩法，结合3D精致画面，将玩家带入一个古怪的童年噩梦世界。</p>
             <div class="game-info-grid">
                 <div class="info-item"><div class="label">开发商</div><div class="value">Tarsier Studios</div></div>
                 <div class="info-item"><div class="label">发行商</div><div class="value">Bandai Namco</div></div>
-                <div class="info-item"><div class="label">一代发售</div><div class="value">2017年4月</div></div>
-                <div class="info-item"><div class="label">二代发售</div><div class="value">2021年2月</div></div>
-                <div class="info-item"><div class="label">游戏类型</div><div class="value">平台解谜/惊悚</div></div>
-                <div class="info-item"><div class="label">难度</div><div class="value">⭐⭐⭐☆☆</div></div>
-                <div class="info-item"><div class="label">预计时长</div><div class="value">4-6小时/部</div></div>
+                <div class="info-item"><div class="label">一作发售</div><div class="value">2017年4月28日</div></div>
+                <div class="info-item"><div class="label">二作发售</div><div class="value">2021年2月10日</div></div>
+                <div class="info-item"><div class="label">三作发售</div><div class="value">2025年10月</div></div>
+                <div class="info-item"><div class="label">原作原名</div><div class="value">Hunger（饥饿）</div></div>
+                <div class="info-item"><div class="label">游戏类型</div><div class="value">横向卷轴解谜</div></div>
                 <div class="info-item"><div class="label">平台</div><div class="value">PC/PS/Xbox/Switch</div></div>
             </div>
         </section>
 
-        <!-- 攻略分类卡片 -->
-        <h2 class="section-title">📚 攻略分类</h2>
-        <div class="card-grid">
-            <div class="card" onclick="document.getElementById('ln1').scrollIntoView({behavior:'smooth'})">
-                <div class="card-header"><div class="card-icon">🚢</div></div>
-                <div class="card-body"><h3>第一部：薄暮镇</h3><p>六（Six）在巨大渔船上的逃生之旅，包含全部关卡详解</p><br><span class="tag">LN1</span><span class="tag tag-yellow">主线</span></div>
+        <!-- 操作说明 -->
+        <section id="controls">
+            <h2 class="section-title">🎮 操作说明</h2>
+            <div class="guide-card">
+                <h3>第一部 & 第二部 通用操作</h3>
+                <div class="controls-table">
+                    <table>
+                        <tr><th>按键</th><th>功能</th><th>说明</th></tr>
+                        <tr><td>WASD / 方向键</td><td>移动 / 视角</td><td>上下左右移动</td></tr>
+                        <tr><td>空格键</td><td>跳跃 / 丢弃</td><td>跳跃、攀爬、丢弃手中物品</td></tr>
+                        <tr><td>Shift</td><td>跑步</td><td>速度快但会产生噪音</td></tr>
+                        <tr><td>Ctrl</td><td>蹲下 / 滑行</td><td>在低矮空间通行，移动更安静</td></tr>
+                        <tr><td>F</td><td>点燃打火机</td><td>在黑暗区域提供光源，部分区域用于保存进度</td></tr>
+                        <tr><td>鼠标左键</td><td>抓住 / 互动</td><td>抓住把手、开关、攀爬物等</td></tr>
+                        <tr><td>鼠标右键</td><td>投掷</td><td>第二部中投掷帽子或物品</td></tr>
+                    </table>
+                </div>
+                <div class="tip-box"><strong>💡 通用规则：</strong>所有具有梯子形状的建筑或器具均可攀爬。大部分谜题依赖"按住左键+方向移动"或"跳跃+左键"的组合操作。</div>
             </div>
-            <div class="card" onclick="document.getElementById('ln2').scrollIntoView({behavior:'smooth'})">
-                <div class="card-header"><div class="card-icon">🧢</div></div>
-                <div class="card-body"><h3>第二部：低语镇</h3><p>六与Mono的双人合作冒险，探索神秘的电视人世界</p><br><span class="tag">LN2</span><span class="tag tag-yellow">主线</span></div>
-            </div>
-            <div class="card" onclick="document.getElementById('lore').scrollIntoView({behavior:'smooth'})">
-                <div class="card-header"><div class="card-icon">🔮</div></div>
-                <div class="card-body"><h3>剧情深度解析</h3><p>揭秘游戏中的隐喻、象征和隐藏剧情线</p><br><span class="tag tag-blue">深度</span><span class="tag">剧透</span></div>
-            </div>
-        </div>
+        </section>
 
         <!-- ==================== 第一部攻略 ==================== -->
         <section id="ln1" class="guide-section">
-            <h2 class="section-title">🚢 第一部：薄暮镇全攻略</h2>
+            <h2 class="section-title">🚢 第一部：贪颚号（The Maw）全攻略</h2>
 
             <div class="guide-card">
-                <h3>第一章：薄暮镇（The Maw）<span class="difficulty-badge diff-medium">中等难度</span></h3>
-                <p>薄暮镇是一艘巨大的远洋渔船，漂浮在迷雾笼罩的海面上。船上居住着各种扭曲的船员，他们被饥饿和欲望驱使，将彼此视为食物。你需要帮助六（Six）穿越这艘死亡之船，找到逃生的路。</p>
-                
-                <h4>📍 区域1：入口走廊</h4>
-                <ul>
-                    <li>游戏开场，六被一个穿黄色雨衣的人（Mono）拉进薄暮镇的下水道入口</li>
-                    <li>沿着狭窄的走廊前进，注意头顶的灯光——站在光线下会被发现</li>
-                    <li>第一个敌人是在房间里吃食的巨大船员，保持蹲伏（Shift），不要发出声音</li>
-                    <li>通过一扇需要按按钮的门，按下后快速跑过去</li>
-                    <li>找到通风管道的入口，爬进去</li>
-                </ul>
-                <div class="tip-box"><strong>💡 操作提示：</strong>Shift键=蹲下（安静移动），Ctrl键=奔跑（速度快但有噪音），空格键=跳跃/攀爬</div>
-
-                <h4>📍 区域2：厨房区域</h4>
-                <ul>
-                    <li>从通风口出来后，进入厨房区域</li>
-                    <li>这里有许多厨师在忙碌，他们会来回走动</li>
-                    <li><strong>策略：</strong>等厨师转身后再移动，利用厨房设备作为掩护</li>
-                    <li>找到一个需要两人操作的阀门——六需要踩在箱子上转动阀门</li>
-                    <li>转动阀门后，蒸汽会喷出，趁蒸汽遮挡时快速通过</li>
-                </ul>
-                <div class="danger-box"><strong>⚠️ 注意：</strong>蒸汽喷出的时候不要停留太久，会持续扣血！</div>
-
-                <h4>📍 区域3：餐厅</h4>
-                <ul>
-                    <li>进入宽敞的餐厅，这里正在举行一场恐怖的宴会</li>
-                    <li>大量船员坐在餐桌旁进食，天花板上有吊灯</li>
-                    <li><strong>解密：</strong>推餐车到指定位置，餐车可以作为掩体和垫脚石</li>
-                    <li>当餐车推到指定位置后，爬上餐车，再跳到对面的平台上</li>
-                    <li>注意躲避在过道上巡逻的监工（Janitor）</li>
-                </ul>
-
-                <h4>📍 区域4：船员生活区</h4>
-                <ul>
-                    <li>穿过餐厅后面的通道，进入船员休息区</li>
-                    <li>这里有排列整齐的床铺，有些船员还在睡觉</li>
-                    <li><strong>技巧：</strong>躺在空床上可以伪装自己，但只能躺很短的时间</li>
-                    <li>找到一扇上锁的门，需要用钥匙卡打开</li>
-                    <li>钥匙卡在附近的一个柜子里，需要推开柜子才能拿到</li>
-                </ul>
-
-                <h4>📍 区域5：船长室</h4>
-                <ul>
-                    <li>使用钥匙卡打开上层的门，来到船长室区域</li>
-                    <li>这里相对安全，可以稍作休息</li>
-                    <li>找到一个信号发射器，需要修复它来发出求救信号</li>
-                    <li><strong>解密：</strong>将三个零件分别放到正确的位置</li>
-                    <li>修复后启动信号发射器，电梯会打开</li>
-                </ul>
-
-                <h4>📍 区域6：甲板逃脱</h4>
-                <ul>
-                    <li>乘坐电梯上升到甲板</li>
-                    <li>甲板上风很大，注意不要被吹下去</li>
-                    <li>找到一艘小船，准备离开薄暮镇</li>
-                    <li>在离开前，回头看一下——薄暮镇缓缓沉入海中</li>
-                    <li>六在船上睡着了，画面变黑...</li>
-                </ul>
-                <div class="tip-box"><strong>💡 隐藏细节：</strong>在厨房的墙上可以看到一些奇怪的符号，这些符号在整个游戏中都有出现，可能与剧情有关。</div>
+                <h3>📖 章节总览</h3>
+                <p>贪颚号是一艘巨大的远洋渔船，漂浮在迷雾笼罩的海面上。游戏共有5个主要章节，六（Six）需要从底层一路向上逃离。</p>
+                <table>
+                    <tr><th>章节</th><th>名称</th><th>主要内容</th></tr>
+                    <tr><td>第一章</td><td>监狱（Prison）</td><td>眼睛看守、水蛭、通风管道</td></tr>
+                    <tr><td>第二章</td><td>货仓（Cargo）</td><td>长臂工人、传送带、锅炉房</td></tr>
+                    <tr><td>第三章</td><td>厨房（Kitchen）</td><td>双子厨师、蒸汽谜题</td></tr>
+                    <tr><td>第四章</td><td>餐厅（Dining Room）</td><td>食客、宴会、宾客区</td></tr>
+                    <tr><td>第五章</td><td>客房（Guest Quarters）</td><td>The Lady、结局</td></tr>
+                </table>
             </div>
 
+            <!-- 第一章 -->
             <div class="guide-card">
-                <h3>🏆 第一部通关后彩蛋</h3>
+                <h3>第一章：监狱（Prison）</h3>
+                
+                <div class="hero-screenshot">
+                    <img src="images/ln1-six.jpg" alt="小小梦魇1 - 六的角色立绘">
+                    <div class="caption">📷 主角六（Six）—— 穿着黄色雨衣的小女孩，贪颚号的逃亡者</div>
+                </div>
+
+                <h4>📍 苏醒与通风口</h4>
                 <ul>
-                    <li>游戏结尾，六坐在一间白色房间里，面前摆着一盘肉</li>
-                    <li>她拿起刀叉开始吃东西——暗示她可能变成了新的"夫人"</li>
-                    <li>这个结局为第二部埋下了重要伏笔</li>
-                    <li>通关后会解锁"薄暮镇"的难度评价和收集进度</li>
+                    <li>六从行李箱中醒来，位于贪颚号的最底层</li>
+                    <li>向右前进，找到一盏提灯，按 <strong>F键</strong> 点燃保存进度</li>
+                    <li>前方管道盖子需要打开——走到通风窗把手处</li>
+                    <li><strong>操作：</strong>按住鼠标左键，向<strong>左侧</strong>拽动把手，门即打开</li>
+                    <li>爬进通风管道，进入下一区域</li>
+                </ul>
+
+                <h4>📍 卧室与窗户</h4>
+                <ul>
+                    <li>从通风口出来后进入一间卧室</li>
+                    <li>跳上床，尝试跳向上方窗口</li>
+                    <li><strong>关键操作：</strong>需要组合键 <strong>跳跃 + 鼠标左键</strong> 才能成功跳入窗口</li>
+                </ul>
+
+                <h4>📍 上吊房间</h4>
+                <ul>
+                    <li>进入一个房间，里面有一具被吊死的尸体（只看到一双大腿）</li>
+                    <li><strong>解谜：</strong>将尸体下方的椅子拉到门边</li>
+                    <li>跳上椅子，拉开门把手</li>
+                    <li>通过门后，攀爬梯子到达上一层</li>
+                </ul>
+
+                <h4>📍 冰箱房间与水蛭</h4>
+                <ul>
+                    <li>来到一个有巨大冰箱的房间</li>
+                    <li><strong>操作：</strong>按住鼠标左键并向<strong>右侧</strong>走动，打开冰箱门</li>
+                    <li>爬上冰箱顶部通行</li>
+                    <li>前方走廊有<strong>水蛭（Leech）</strong>在爬行</li>
+                    <li><strong>应对：</strong>按住 Shift 持续奔跑，不要停留</li>
+                </ul>
+            </div>
+
+            <!-- 第二章 -->
+            <div class="guide-card">
+                <h3>第二章：货仓（Cargo）</h3>
+                
+                <div class="hero-screenshot">
+                    <img src="images/ln1-maw.jpg" alt="小小梦魇1 - 贪颚号全景">
+                    <div class="caption">📷 贪颚号全景——漂浮在迷雾中的巨大远洋渔船</div>
+                </div>
+
+                <h4>📍 长臂工人区域</h4>
+                <ul>
+                    <li>进入一个巨大的货仓，里面有一个盲眼的<strong>长臂工人</strong></li>
+                    <li>长臂工人负责打包货物和烧锅炉，视力很差但听力敏锐</li>
+                    <li><strong>策略：</strong>蹲下缓慢移动，不要发出声音</li>
+                    <li>长臂工人会将六当作货物打包进包裹</li>
+                    <li>在传送带上撕开包裹逃跑</li>
+                </ul>
+
+                <h4>📍 锅炉房</h4>
+                <ul>
+                    <li>逃到锅炉房区域</li>
+                    <li>这里有大量的蒸汽和管道</li>
+                    <li>找到煤炭输送履带，启动它</li>
+                    <li>乘坐煤筐上升到上层区域</li>
+                </ul>
+            </div>
+
+            <!-- 第三章 -->
+            <div class="guide-card">
+                <h3>第三章：厨房（Kitchen）</h3>
+                
+                <div class="hero-screenshot">
+                    <img src="images/ln1-maw.jpg" alt="小小梦魇1 - 厨房区域">
+                    <div class="caption">📷 厨房区域——双子厨师的烹饪地狱，蒸汽弥漫的恐怖空间</div>
+                </div>
+
+                <h4>📍 双子厨师</h4>
+                <ul>
+                    <li>进入厨房，这里有两个巨大的厨师在忙碌</li>
+                    <li>他们使用巨大的刀叉，体型庞大但行动笨拙</li>
+                    <li><strong>策略：</strong>等厨师转身后再移动，利用厨房设备作为掩护</li>
+                </ul>
+
+                <h4>📍 蒸汽谜题</h4>
+                <ul>
+                    <li>转动阀门后，蒸汽会喷出</li>
+                    <li><strong>时机：</strong>趁蒸汽遮挡时快速通过</li>
+                    <li>注意：蒸汽喷出的时候不要停留太久，会持续扣血！</li>
+                </ul>
+                <div class="danger-box"><strong>⚠️ 注意：</strong>蒸汽伤害很高，务必在蒸汽喷发的间隙快速通过。</div>
+            </div>
+
+            <!-- 第四章 -->
+            <div class="guide-card">
+                <h3>第四章：餐厅（Dining Room）</h3>
+                
+                <div class="hero-screenshot">
+                    <img src="images/ln1-maw.jpg" alt="小小梦魇1 - 餐厅宴会">
+                    <div class="caption">📷 餐厅宴会厅——食客的恐怖盛宴，天花板上悬挂着吊灯</div>
+                </div>
+
+                <h4>📍 宴会大厅</h4>
+                <ul>
+                    <li>进入宽敞的餐厅，这里正在举行一场恐怖的宴会</li>
+                    <li>大量<strong>食客</strong>坐在餐桌旁进食，天花板上悬挂着吊灯</li>
+                    <li>餐桌上摆满了各种"食物"——暗示这些食物是人类</li>
+                </ul>
+
+                <h4>📍 餐车解密</h4>
+                <ul>
+                    <li><strong>操作：</strong>推餐车到指定位置</li>
+                    <li>餐车可以作为掩体和垫脚石</li>
+                    <li>推到指定位置后，爬上餐车，跳到对面的平台</li>
+                </ul>
+
+                <h4>📍 宾客区</h4>
+                <ul>
+                    <li>穿过餐厅后面的通道，进入宾客区</li>
+                    <li>这里有更多的食客在进食</li>
+                    <li>注意躲避在过道上巡逻的船员</li>
+                    <li>找到通往上层的楼梯</li>
+                </ul>
+            </div>
+
+            <!-- 第五章 -->
+            <div class="guide-card">
+                <h3>第五章：客房（Guest Quarters）</h3>
+                
+                <div class="hero-screenshot">
+                    <img src="images/ln1-six.jpg" alt="小小梦魇1 - 客房结局">
+                    <div class="caption">📷 顶层客房——The Lady（夫人）的领地，六的最终抉择</div>
+                </div>
+
+                <h4>📍 通往顶层</h4>
+                <ul>
+                    <li>沿着走廊前进，环境变得更加明亮</li>
+                    <li>外面传来女鬼般的歌声</li>
+                    <li>打碎花瓶后女鬼消失，但气氛更加诡异</li>
+                    <li>找到钥匙，打开上层的门</li>
+                </ul>
+
+                <h4>📍 The Lady（夫人）</h4>
+                <ul>
+                    <li>进入顶层客房，面对<strong>The Lady（夫人）</strong></li>
+                    <li>夫人是贪颚号的真正主宰，穿着优雅，举止怪异</li>
+                    <li>六与夫人对峙——她们其实是同一个人的两面</li>
+                </ul>
+
+                <h4>📍 结局</h4>
+                <ul>
+                    <li>六坐在白色房间里，面前摆着一盘肉</li>
+                    <li>她拿起刀叉开始吃东西</li>
+                    <li><strong>暗示：</strong>六可能变成了新的"夫人"，童真的六已经消逝</li>
                 </ul>
                 <div class="danger-box"><strong>⚠️ 剧透警告：</strong>如果你还没通关，建议先自己体验这个结局！</div>
             </div>
@@ -215,150 +308,215 @@
             <h2 class="section-title">🧢 第二部：小小梦魇2 全攻略</h2>
 
             <div class="guide-card">
-                <h3>第一章：低语镇（Low Town）<span class="difficulty-badge diff-easy">简单</span></h3>
-                <p>六和 Mono 醒来后发现自己在一条河边，周围是一个神秘的小镇。这一次，六不再是独自一人——Mono 成为了她的伙伴。双人合作是本作的核心玩法。</p>
+                <h3>📖 章节总览</h3>
+                <p>第二部中，玩家控制小男孩<strong>Mono（摩诺）</strong>，与六一起冒险。核心玩法是双人合作。</p>
+                <table>
+                    <tr><th>章节</th><th>名称</th><th>主要区域</th><th>Boss</th></tr>
+                    <tr><td>第一章</td><td>森林（The Woods）</td><td>森林、猎人小屋</td><td>猎人</td></tr>
+                    <tr><td>第二章</td><td>学校（The School）</td><td>学校走廊、教室</td><td>女教师</td></tr>
+                    <tr><td>第三章</td><td>医院（The Hospital）</td><td>医院、实验室</td><td>医生</td></tr>
+                    <tr><td>第四章</td><td>信号塔（The Signal Tower）</td><td>信号塔、居民区</td><td>Thin Man（瘦人）</td></tr>
+                    <tr><td>第五章</td><td>幻境（The Pale City）</td><td>电视城、六的房间</td><td>怪物六</td></tr>
+                </table>
+            </div>
+
+            <!-- 第一章 -->
+            <div class="guide-card">
+                <h3>第一章：森林（The Woods）</h3>
                 
-                <h4>📍 区域1：河边苏醒</h4>
+                <div class="hero-screenshot">
+                    <img src="images/ln2-mono-six.jpg" alt="小小梦魇2 - 森林章节">
+                    <div class="caption">📷 Mono与六在森林中——双人合作的开始</div>
+                </div>
+
+                <h4>📍 苏醒</h4>
                 <ul>
-                    <li>六和 Mono 从睡梦中醒来，发现自己被困在一个地方</li>
-                    <li>Mono 告诉六他可以把画中的东西变现实</li>
-                    <li><strong>教学关：</strong>Mono 画了一架梯子，梯子变成实物，六可以爬上去</li>
-                    <li>学会基本操作：Mono 可以扔帽子吸引敌人注意，六可以攀爬</li>
-                    <li>沿着小河前进，找到进入小镇的路</li>
+                    <li>Mono在一个下雨的夜晚从睡梦中醒来</li>
+                    <li>他戴着纸帽子，试图遗忘外面的世界</li>
+                    <li>在树上玩耍时，看到了被猎人追捕的六</li>
+                    <li>六的目光被Mono吸引，停下了脚步，于是被猎人抓住</li>
                 </ul>
 
-                <h4>📍 区域2：小镇街道</h4>
+                <h4>📍 猎人小屋</h4>
                 <ul>
-                    <li>进入低语镇的主街，这里看起来很荒凉</li>
-                    <li>路上散落着硬币，可以收集起来</li>
-                    <li>注意天空中的乌鸦——它们会发出警报</li>
-                    <li>找到第一座可以进入的建筑：废弃的公寓楼</li>
-                </ul>
-
-                <h4>📍 区域3：电视人的公寓</h4>
-                <ul>
-                    <li>公寓里住着电视人（The Television Man），一个头部是老式电视机的怪物</li>
-                    <li><strong>核心机制：</strong>电视人会被帽子的颜色吸引</li>
-                    <li>Mono 有不同的帽子，每种颜色对应不同的反应</li>
-                    <li><strong>策略：</strong>把帽子扔出去吸引电视人，六趁机通过</li>
-                    <li>找到楼梯，上楼前往下一层</li>
-                </ul>
-                <div class="tip-box"><strong>💡 高级技巧：</strong>把帽子扔向电视人背后的方向，这样他会背对着六走开，给你更多通过时间。</div>
-
-                <h4>📍 区域4：屋顶逃亡</h4>
-                <ul>
-                    <li>从公寓楼顶出来，沿着屋顶前进</li>
-                    <li>需要 Mono 把六抛过高处的平台</li>
-                    <li><strong>抛掷操作：</strong>Mono 靠近六，按住攻击键即可抛掷</li>
-                    <li>六抓住边缘后，Mono 把她拉上去</li>
-                    <li>到达对面建筑，进入下一区域</li>
+                    <li>Mono进入猎人的小屋，发现被囚禁的六</li>
+                    <li>六引导Mono前往信号塔的方向</li>
+                    <li>两人开始合作逃亡</li>
+                    <li><strong>双人机制：</strong>Mono可以将六抛过高处障碍</li>
                 </ul>
             </div>
 
+            <!-- 第二章 -->
             <div class="guide-card">
-                <h3>第二章：信号塔（The Signal Tower）<span class="difficulty-badge diff-medium">中等难度</span></h3>
+                <h3>第二章：学校（The School）</h3>
                 
-                <h4>📍 区域1：地下管道</h4>
+                <div class="hero-screenshot">
+                    <img src="images/ln2-pale-city.jpg" alt="小小梦魇2 - 学校章节">
+                    <div class="caption">📷 学校区域——长脖子女教师的恐怖课堂</div>
+                </div>
+
+                <h4>📍 进入学校</h4>
                 <ul>
-                    <li>进入地下管道系统，环境变得更加阴暗</li>
-                    <li>管道中有积水，需要注意水位</li>
-                    <li>找到被囚禁的其他孩子——他们被关在笼子里</li>
-                    <li>解救孩子可以获得奖励</li>
+                    <li>沿河前进，来到一所废弃的学校</li>
+                    <li>通过衣架将六送到对面平台</li>
+                    <li>Mono跳向六，被她接住，通过梯子继续向上</li>
                 </ul>
 
-                <h4>📍 区域2：信号塔底部</h4>
+                <h4>📍 坍塌的走廊</h4>
                 <ul>
-                    <li>到达信号塔的底部，这里有很多电线和设备</li>
-                    <li>需要修复电路才能打开通往塔顶的路</li>
-                    <li><strong>解密：</strong>转动多个开关，让电流通过正确的路径</li>
-                    <li>注意躲避带电的水坑</li>
+                    <li>进入房间后建筑结构开始坍塌</li>
+                    <li>尽快推开房门进入下一区域</li>
+                    <li>地板出现缺口，需要跳入缺口下方</li>
+                    <li>六被压在 debris 下，Mono 帮助她逃脱</li>
                 </ul>
 
-                <h4>📍 区域3：攀爬信号塔</h4>
+                <h4>📍 电视人与 Thin Man</h4>
                 <ul>
-                    <li>沿着信号塔的梯子向上攀爬</li>
-                    <li>风越来越大，角色会被吹得晃动</li>
-                    <li>中途需要 Mono 把六抛到更高的平台上</li>
-                    <li>到达塔顶，面对最终的Boss战</li>
+                    <li>找到一台电视机，调整信号进入电视世界</li>
+                    <li>在电视中穿过长廊，打开尽头的大门</li>
+                    <li>门后是<strong>Thin Man（瘦人/帽子男）</strong></li>
+                    <li>被弹出电视后，Thin Man 从屏幕中出现并开始追捕</li>
+                    <li>六被 Thin Man 抓走，Mono 必须制定营救计划</li>
+                </ul>
+
+                <h4>📍 女教师</h4>
+                <ul>
+                    <li>学校里的女教师有一个极长的脖子</li>
+                    <li>学生们被变成大脑空空的瓷娃娃</li>
+                    <li><strong>策略：</strong>利用 Mono 的帽子吸引女教师注意</li>
+                    <li>找到开关，关闭学校的电源</li>
                 </ul>
             </div>
 
+            <!-- 第三章 -->
             <div class="guide-card">
-                <h3>第三章：博物馆（The House Across the Lake）<span class="difficulty-badge diff-hard">困难</span></h3>
+                <h3>第三章：医院（The Hospital）</h3>
                 
-                <h4>📍 区域1：湖边的房子</h4>
+                <div class="hero-screenshot">
+                    <img src="images/ln2-pale-city.jpg" alt="小小梦魇2 - 医院章节">
+                    <div class="caption">📷 医院区域——蜘蛛侠医生的恐怖实验室</div>
+                </div>
+
+                <h4>📍 医院入口</h4>
                 <ul>
-                    <li>六和 Mono 来到一座湖边的豪宅</li>
-                    <li>这里住着"医生"（The Doctor）和他的病人</li>
-                    <li>医生是一个巨大的肥胖男人，他的病人们被改造成了各种形状</li>
-                    <li><strong>核心机制：</strong>利用环境中的物品制造混乱</li>
+                    <li>离开学校后，来到一所医院</li>
+                    <li>医院里住着不会死去的病人</li>
+                    <li>病人会玩"123木头人"游戏</li>
                 </ul>
 
-                <h4>📍 区域2：实验室</h4>
+                <h4>📍 医生</h4>
                 <ul>
-                    <li>进入医生的实验室，这里充满了恐怖的人体实验设备</li>
+                    <li>医院的<strong>医生</strong>像一个蜘蛛侠，有四条手臂</li>
+                    <li>他进行着恐怖的人体实验</li>
+                    <li><strong>策略：</strong>利用环境中的物品分散医生注意力</li>
                     <li>找到钥匙打开各个房间</li>
-                    <li>注意医生的巡逻路线，利用阴影躲避</li>
-                    <li>解救被关押的病人</li>
-                </ul>
-
-                <h4>📍 区域3：Boss战——医生</h4>
-                <ul>
-                    <li>医生会追着你们跑，需要不断躲避</li>
-                    <li><strong>策略：</strong>把医生引到陷阱区域，让他掉下去</li>
-                    <li>需要多次重复这个过程</li>
-                    <li>最终 Mono 被医生抓住...</li>
-                </ul>
-                <div class="danger-box"><strong>⚠️ 关键剧情：</strong>这一章的结局非常震撼，Mono 被医生抓走了，六必须独自面对接下来的挑战。</div>
-            </div>
-
-            <div class="guide-card">
-                <h3>第四章：学校（The School）<span class="difficulty-badge diff-medium">中等难度</span></h3>
-                
-                <h4>📍 区域1：重返信号塔</h4>
-                <ul>
-                    <li>六独自来到一座学校建筑前</li>
-                    <li>这里曾经是电视人的训练基地</li>
-                    <li>需要解开一系列谜题来前进</li>
-                </ul>
-
-                <h4>📍 区域2：教室</h4>
-                <ul>
-                    <li>教室里有很多课桌和黑板</li>
-                    <li>黑板上有隐藏的线索</li>
-                    <li>找到 Mono 曾经在这里留下的痕迹</li>
-                </ul>
-
-                <h4>📍 区域3：图书馆</h4>
-                <ul>
-                    <li>图书馆中有大量的书籍和档案</li>
-                    <li>通过阅读可以了解电视人的背景故事</li>
-                    <li>找到通往塔顶的钥匙</li>
                 </ul>
             </div>
 
+            <!-- 第四章 -->
             <div class="guide-card">
-                <h3>第五章：电视人的巢穴（The Pale City）<span class="difficulty-badge diff-hard">困难</span></h3>
+                <h3>第四章：信号塔（The Signal Tower）</h3>
                 
-                <h4>📍 区域1：苍白之城</h4>
+                <div class="hero-screenshot">
+                    <img src="images/ln2-mono-six.jpg" alt="小小梦魇2 - 信号塔章节">
+                    <div class="caption">📷 信号塔——Thin Man控制世界的中心</div>
+                </div>
+
+                <h4>📍 居民区</h4>
                 <ul>
-                    <li>最终章，六深入电视人的巢穴</li>
-                    <li>整个城市被电视信号覆盖</li>
-                    <li>到处都是电视人的手下</li>
+                    <li>来到一个居民区，这里的居民沉迷于电视</li>
+                    <li>他们精神恍惚，甚至从高楼踩空跌落</li>
+                    <li>Mono 和六需要穿过这片区域</li>
                 </ul>
 
-                <h4>📍 区域2：最终对决</h4>
+                <h4>📍 六的房间</h4>
                 <ul>
-                    <li>六面对电视人</li>
-                    <li>利用 Mono 的帽子作为武器</li>
-                    <li>最终击败电视人，救出 Mono</li>
+                    <li>Six 带 Mono 来到她童年的房间</li>
+                    <li>房间里有一个音乐盒</li>
+                    <li>Thin Man 突然出现，从 Six 的房间把她抓走</li>
+                </ul>
+
+                <h4>📍 摘下帽子</h4>
+                <ul>
+                    <li>Mono 意识到不能永远逃避</li>
+                    <li><strong>关键转折：</strong>Mono 摘掉纸帽子，丢在雨地里</li>
+                    <li>直面自我后，Mono 的力量变得非常强大</li>
+                    <li>Thin Man 暂时消失了</li>
+                </ul>
+            </div>
+
+            <!-- 第五章 -->
+            <div class="guide-card">
+                <h3>第五章：幻境（The Pale City）</h3>
+                
+                <div class="hero-screenshot">
+                    <img src="images/ln2-pale-city.jpg" alt="小小梦魇2 - 幻境章节">
+                    <div class="caption">📷 苍白之城——最终决战之地，信号塔矗立在城市中央</div>
+                </div>
+
+                <h4>📍 进入信号塔</h4>
+                <ul>
+                    <li>Mono 走进信号塔，前往拯救 Six</li>
+                    <li>凭借音乐盒的音乐声穿过幻境迷宫</li>
+                </ul>
+
+                <h4>📍 梦魇真相</h4>
+                <ul>
+                    <li>Mono 看到了真正的梦魇：变成怪物的 Six</li>
+                    <li>怪物 Six 在童年房间的废墟里抱着音乐盒</li>
+                    <li>她不让 Mono 靠近</li>
+                </ul>
+
+                <h4>📍 砸碎音乐盒</h4>
+                <ul>
+                    <li>Mono 用斧子把音乐盒砸烂</li>
+                    <li>但 Six 不肯放弃，在梦中又把音乐盒复原</li>
+                    <li>Mono 一遍又一遍地砸烂音乐盒</li>
+                    <li><strong>第6次</strong>砸烂后，怪物消失，Six 恢复原型</li>
                 </ul>
 
                 <h4>📍 结局</h4>
                 <ul>
-                    <li>六和 Mono 一起逃离了电视人的巢穴</li>
-                    <li>但他们发现外面的世界更加可怕...</li>
-                    <li>结局暗示了第一部结局的真正含义</li>
+                    <li>信号塔开始崩塌</li>
+                    <li>两人一起跑向出口</li>
+                    <li>在最后一段阶梯上，Six 拉住即将坠落的 Mono</li>
+                    <li>但 Mono 不可能跟 Six 一起离开——他只存在于 Six 的梦中</li>
+                    <li><strong>六松开了手</strong>，让 Mono 被梦境吞噬，独自走出梦境</li>
+                </ul>
+                <div class="tip-box"><strong>💡 结局解读：</strong>六放手的原因有多种解读：1)看清Mono的脸与捉走她的男人相似，出于恐惧放手；2)之前玩家没有选择伸手救Mono，出于报复放手；3)六已经虚弱饥饿，害怕吃掉Mono；4)六已经不是之前的六，曾经的六或许已经死去。</div>
+            </div>
+        </section>
+
+        <!-- ==================== DLC攻略 ==================== -->
+        <section id="dlc">
+            <h2 class="section-title">📦 DLC攻略</h2>
+
+            <div class="guide-card">
+                <h3>Secrets of the Maw（贪颚号的秘密）</h3>
+                <p>DLC 讲述了无名小男孩在贪颚号的经历，时间线与第一部并行。</p>
+                
+                <h4>📍 DLC1：底层（The Depths）</h4>
+                <ul>
+                    <li>小男孩从下水道醒来，进入贪颚号底层</li>
+                    <li>遇到水鬼和水蛭</li>
+                    <li>找到一些可爱的小矮人（Nomes）</li>
+                </ul>
+
+                <h4>📍 DLC2：藏身地（The Hideaway）</h4>
+                <ul>
+                    <li>在小矮人的帮助下，小男孩救出被困的同伴</li>
+                    <li>启动输送煤球的履带，乘煤筐上升</li>
+                    <li>搭乘电梯来到锅炉房上层</li>
+                    <li>监工（Janitor）是此区域的主要敌人</li>
+                </ul>
+
+                <h4>📍 DLC3：居所（The Residence）</h4>
+                <ul>
+                    <li>小男孩跟随电梯来到客房区</li>
+                    <li>在寻找出路的过程中被 The Lady 发现并吸收灵魂</li>
+                    <li>被吸食灵魂后变成小矮人（Nom）</li>
+                    <li>变成小矮人的小男孩渴望朋友，把香肠递给饥饿的六</li>
+                    <li><strong>悲剧结局：</strong>六在黑暗人格的影响下吸食了小男孩</li>
                 </ul>
             </div>
         </section>
@@ -366,169 +524,32 @@
         <!-- ==================== 角色图鉴 ==================== -->
         <section id="characters">
             <h2 class="section-title">👤 角色图鉴</h2>
-            <div class="character-grid">
-                <div class="character-card">
-                    <div class="character-avatar">👧</div>
-                    <h4>六（Six）</h4>
-                    <p><strong>身份：</strong>主角<br><strong>特征：</strong>黄色雨衣、透明头盔<br><strong>能力：</strong>攀爬、潜行<br><strong>背景：</strong>身世成谜的小女孩，似乎一直在某个地方被囚禁。她的真实身份可能与电视人有关。<br><br><span class="tag">LN1主角</span><span class="tag">LN2主角</span></p>
-                </div>
-                <div class="character-card">
-                    <div class="character-avatar">🧢</div>
-                    <h4>Mono</h4>
-                    <p><strong>身份：</strong>《小小梦魇2》新主角<br><strong>特征：</strong>棕色高帽、独眼<br><strong>能力：</strong>把画中的东西变现实、投掷帽子<br><strong>背景：</strong>一个戴着高帽的小男孩，只有一只眼睛。他在第一部开头救了六，但在第二部中成为了受害者。<br><br><span class="tag tag-yellow">LN2主角</span></p>
-                </div>
-                <div class="character-card">
-                    <div class="character-avatar">👨‍🍳</div>
-                    <h4>厨师（The Chef）</h4>
-                    <p><strong>身份：</strong>薄暮镇的主要反派<br><strong>特征：</strong>巨大肥胖、穿厨师服<br><strong>威胁等级：</strong>⭐⭐⭐⭐⭐<br><strong>能力：</strong>用刀叉攻击、体型巨大<br><br><span class="tag tag-blue">LN1Boss</span></p>
-                </div>
-                <div class="character-card">
-                    <div class="character-avatar">👁️</div>
-                    <h4>监工（The Janitor）</h4>
-                    <p><strong>身份：</strong>薄暮镇的清洁工<br><strong>特征：</strong>瘦高、拖着拖把<br><strong>威胁等级：</strong>⭐⭐⭐<br><strong>弱点：</strong>视力很差，但听力敏锐<br><br><span class="tag tag-blue">LN1敌人</span></p>
-                </div>
-                <div class="character-card">
-                    <div class="character-avatar">📺</div>
-                    <h4>电视人（The Television Man）</h4>
-                    <p><strong>身份：</strong>信号塔的主人<br><strong>特征：</strong>头部是老式电视机<br><strong>威胁等级：</strong>⭐⭐⭐⭐<br><strong>能力：</strong>通过电视屏幕控制他人、发射信号<br><br><span class="tag tag-yellow">LN2关键角色</span></p>
-                </div>
-                <div class="character-card">
-                    <div class="character-avatar">👨‍⚕️</div>
-                    <h4>医生（The Doctor）</h4>
-                    <p><strong>身份：</strong>湖边房子的主人<br><strong>特征：</strong>巨大肥胖、穿白大褂<br><strong>威胁等级：</strong>⭐⭐⭐⭐⭐<br><strong>能力：</strong>人体实验、抓捕孩子<br><br><span class="tag tag-blue">LN2Boss</span></p>
-                </div>
-                <div class="character-card">
-                    <div class="character-avatar">👩</div>
-                    <h4>夫人（The Lady）</h4>
-                    <p><strong>身份：</strong>薄暮镇高层的神秘女性<br><strong>特征：</strong>穿着优雅、举止怪异<br><strong>威胁等级：</strong>⭐⭐⭐⭐<br><strong>背景：</strong>她的真实身份是游戏最大的谜团之一。通关后暗示六可能取代了她。<br><br><span class="tag tag-yellow">神秘角色</span></p>
-                </div>
-                <div class="character-card">
-                    <div class="character-avatar">🐱</div>
-                    <h4>猫（The Cat）</h4>
-                    <p><strong>身份：</strong>薄暮镇的居民<br><strong>特征：</strong>猫头人身<br><strong>行为：</strong>在餐厅区域活动，会发出猫叫声<br><strong>备注：</strong>可能是被薄暮镇同化的受害者<br><br><span class="tag tag-blue">LN1敌人</span></p>
-                </div>
-            </div>
-        </section>
-
-        <!-- ==================== 隐藏要素 ==================== -->
-        <section id="secrets">
-            <h2 class="section-title">🔍 隐藏要素与收集</h2>
-
-            <div class="secret-item">
-                <h4>🟡 黄色雨衣的秘密</h4>
-                <p>黄色雨衣在游戏中有多重含义：</p>
-                <ul>
-                    <li><strong>第一部：</strong>六穿着标准的黄色雨衣，这是她的标志</li>
-                    <li><strong>第一部开头：</strong>Mono 穿的雨衣比六的大很多，暗示他是成年人或年龄更大</li>
-                    <li><strong>收集要素：</strong>游戏中有多个隐藏的房间可以找到额外的黄色雨衣</li>
-                    <li><strong>象征意义：</strong>黄色雨衣代表"保护"，但也暗示被囚禁——六从未真正自由过</li>
-                </ul>
-                <div class="tip-box"><strong>💡 收集提示：</strong>在每个区域的角落仔细搜索，有些雨衣藏在不容易注意到的地方。</div>
-            </div>
-
-            <div class="secret-item">
-                <h4>🪙 硬币收集指南</h4>
-                <p>硬币在两部作品中都有不同的用途：</p>
-                <ul>
-                    <li><strong>第一部：</strong>硬币主要用于装饰，收集全部有成就奖励</li>
-                    <li><strong>第二部：</strong>硬币可以在自动售货机中换取道具和线索</li>
-                    <li><strong>隐藏硬币：</strong>有些硬币藏在天花板上方、水下或需要特殊操作才能拿到</li>
-                    <li><strong>成就：</strong>收集全部硬币解锁"收藏家"成就</li>
-                </ul>
-            </div>
-
-            <div class="secret-item">
-                <h4>🖼️ Mono 的绘画能力</h4>
-                <p>在第二部中，Mono 可以把蜡笔画的东西变现实：</p>
-                <ul>
-                    <li><strong>梯子：</strong>画在墙上可以变成真实的梯子供六攀爬</li>
-                    <li><strong>钥匙：</strong>画出的钥匙可以打开特定的门</li>
-                    <li><strong>动物：</strong>画出的动物可以吸引或 distraction 敌人</li>
-                    <li><strong>隐藏画作：</strong>有些画作需要找到蜡笔才能激活</li>
-                </ul>
-                <div class="tip-box"><strong>💡 技巧：</strong>仔细观察墙上的涂鸦，那些可能就是 Mono 之前画过的东西。</div>
-            </div>
-
-            <div class="secret-item">
-                <h4>🎭 隐藏结局与彩蛋</h4>
-                <ul>
-                    <li><strong>第一部真结局：</strong>六没有逃脱，而是成为了新的"夫人"，等待下一个受害者</li>
-                    <li><strong>第二部开头：</strong>呼应第一部结尾，六坐在白色房间里 eating</li>
-                    <li><strong>电视人彩蛋：</strong>在信号塔的电视屏幕上可以看到第一部的片段</li>
-                    <li><strong>多人模式彩蛋：</strong>在某些版本中可以发现隐藏的多人游戏元素</li>
-                    <li><strong>DLC内容：</strong>"The Depths" DLC 揭示了更多关于薄暮镇的历史</li>
-                </ul>
-            </div>
-
-            <div class="secret-item">
-                <h4>🏅 全部成就列表</h4>
-                <ul>
-                    <li><strong>逃脱者：</strong>完成第一部</li>
-                    <li><strong>收藏家：</strong>收集所有硬币</li>
-                    <li><strong>无畏：</strong>在不被发现的情况下通过某个区域</li>
-                    <li><strong>艺术家：</strong>在第二部中使用绘画能力解决所有谜题</li>
-                    <li><strong>速度runner：</strong>以最快速度完成某个关卡</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- ==================== 技巧大全 ==================== -->
-        <section id="tips">
-            <h2 class="section-title">💡 技巧大全</h2>
-
+            
             <div class="guide-card">
-                <h3>🏃 移动与控制</h3>
-                <ul>
-                    <li><strong>蹲下行走（Shift）：</strong>在低矮空间通行，且移动更安静，降低被发现概率</li>
-                    <li><strong>奔跑（Ctrl）：</strong>速度快但会产生噪音，适合紧急情况</li>
-                    <li><strong>攀爬：</strong>靠近可攀爬的边缘会自动抓住，按住方向键向上</li>
-                    <li><strong>游泳：</strong>水中移动较慢，注意氧气条，尽快上岸</li>
-                    <li><strong>抛掷（Mono操作）：</strong>按住攻击键可以将六抛过高处障碍</li>
-                </ul>
+                <h3>主要角色</h3>
+                <table>
+                    <tr><th>角色</th><th>身份</th><th>特征</th><th>备注</th></tr>
+                    <tr><td>六（Six）</td><td>第一部主角 / LN2主角</td><td>黄色雨衣、透明头盔</td><td>饥饿而孤独的小女孩，真实身份成谜</td></tr>
+                    <tr><td>Mono（摩诺）</td><td>LN2主角</td><td>棕色高帽、独眼</td><td>能把画变现实，是六的唯一希望</td></tr>
+                    <tr><td>The Lady（夫人）</td><td>第一部最终Boss</td><td>穿着优雅的神秘女性</td><td>贪颚号的主宰，六的黑暗面</td></tr>
+                    <tr><td>Thin Man（瘦人）</td><td>LN2最终Boss</td><td>西装革履的瘦高男子</td><td>控制信号塔，用电视信号操控世人</td></tr>
+                </table>
             </div>
 
             <div class="guide-card">
-                <h3>🎯 潜行技巧</h3>
-                <ul>
-                    <li><strong>观察巡逻路线：</strong>先静观敌人的行动规律，再决定何时移动</li>
-                    <li><strong>利用声音：</strong>扔物品可以吸引敌人注意力，为你创造机会</li>
-                    <li><strong>阴影躲避：</strong>大部分敌人看不到阴影中的人</li>
-                    <li><strong>等待时机：</strong>不要急着跑，等敌人转身后再移动</li>
-                    <li><strong>帽子诱饵：</strong>Mono 的帽子是最好的 distraction 工具</li>
-                </ul>
-                <div class="tip-box"><strong>💡 高级技巧：</strong>在关键区域，先观察所有敌人的位置，规划一条最优路线再行动。</div>
-            </div>
-
-            <div class="guide-card">
-                <h3>🧩 解谜技巧</h3>
-                <ul>
-                    <li><strong>仔细观察环境：</strong>墙上的涂鸦、地板的标记、物品的摆放都有含义</li>
-                    <li><strong>利用光影：</strong>有些谜题需要在黑暗中才能看清</li>
-                    <li><strong>记住图案：</strong>密码锁的图案需要记住并按正确顺序输入</li>
-                    <li><strong>双人配合：</strong>在第二部中，六和 Mono 需要互相配合才能通过</li>
-                    <li><strong>回溯探索：</strong>有时候需要回到之前的区域，用新获得的能力打开新路</li>
-                </ul>
-            </div>
-
-            <div class="guide-card">
-                <h3>💾 存档与难度设置</h3>
-                <ul>
-                    <li>游戏会在关键节点自动保存</li>
-                    <li>在安全区域可以多存几次档</li>
-                    <li>遇到困难的地方建议手动存档</li>
-                    <li>如果卡关了，可以尝试读档换个思路</li>
-                    <li>游戏有三种难度：轻松、标准、困难</li>
-                </ul>
-            </div>
-
-            <div class="guide-card">
-                <h3>🎨 艺术与设计欣赏</h3>
-                <ul>
-                    <li><strong>色彩运用：</strong>游戏大量使用暗色调，黄色作为强调色突出主角</li>
-                    <li><strong>比例对比：</strong>主角很小，敌人巨大，营造无力感和压迫感</li>
-                    <li><strong>声音设计：</strong>环境音效和背景音乐完美配合，增强恐怖氛围</li>
-                    <li><strong>隐喻象征：</strong>食物链、人性贪婪、成长创伤等主题贯穿始终</li>
-                </ul>
+                <h3>敌人角色</h3>
+                <table>
+                    <tr><th>敌人</th><th>出现章节</th><th>特征</th><th>弱点</th></tr>
+                    <tr><td>眼睛（The Eye）</td><td>第一部·监狱</td><td>巨大的独眼生物</td><td>视力有限，可利用阴影躲避</td></tr>
+                    <tr><td>水蛭（Leech）</td><td>第一部·监狱</td><td>爬行的巨型水蛭</td><td>需要快速奔跑通过</td></tr>
+                    <tr><td>长臂工人</td><td>第一部·货仓</td><td>手臂极长的盲眼工人</td><td>视力差，靠声音定位</td></tr>
+                    <tr><td>双子厨师</td><td>第一部·厨房</td><td>两个肥胖的厨师</td><td>行动笨拙，可被蒸汽烫伤</td></tr>
+                    <tr><td>食客</td><td>第一部·餐厅</td><td>贪婪的进食者</td><td>专注进食时不会注意你</td></tr>
+                    <tr><td>猎人</td><td>第二部·森林</td><td>戴纸帽的疯狂猎人</td><td>可利用陷阱击败</td></tr>
+                    <tr><td>女教师</td><td>第二部·学校</td><td>长脖子的女教师</td><td>可被帽子吸引注意</td></tr>
+                    <tr><td>医生</td><td>第二部·医院</td><td>四臂的蜘蛛侠医生</td><td>可利用环境障碍</td></tr>
+                    <tr><td>电视人</td><td>第二部·信号塔</td><td>头部是老式电视机</td><td>会被帽子颜色吸引</td></tr>
+                </table>
             </div>
         </section>
 
@@ -537,71 +558,122 @@
             <h2 class="section-title">🔮 剧情深度解析</h2>
 
             <div class="guide-card">
-                <h3>🌀 世界观设定</h3>
-                <p>《小小梦魇》的世界是一个扭曲的、超现实的梦境空间。这个世界遵循着一种"弱肉强食"的逻辑——大的吃小的，强者支配弱者。这种设定隐喻了社会中的权力结构和人性的黑暗面。</p>
+                <h3>🌍 世界观设定</h3>
+                <p>《小小梦魇》的世界是一个扭曲的、超现实的梦境空间。这个世界遵循着<strong>"弱肉强食"</strong>的逻辑——大的吃小的，强者支配弱者。</p>
                 
-                <h4>薄暮镇的象征意义</h4>
+                <h4>世界的结构</h4>
                 <ul>
-                    <li>薄暮镇代表"欲望的深渊"——船员们被食欲和贪婪吞噬</li>
-                    <li>船只在迷雾中航行，象征着没有出口的绝望</li>
-                    <li>厨师和食客的关系隐喻了社会中的剥削与被剥削</li>
+                    <li><strong>贪颚号（The Maw）</strong>：世界的"胃囊"，控制消化系统，象征贪婪和欲望</li>
+                    <li><strong>苍白之城（The Pale City）</strong>：世界的"大脑"，控制神经系统，位于贪颚号顶部</li>
+                    <li><strong>梦魇的源头</strong>：在信号塔里，源源不断地向外界发射信号，影响整个梦境世界</li>
                 </ul>
 
-                <h4>低语镇的象征意义</h4>
+                <h4>贪颚号的循环</h4>
                 <ul>
-                    <li>低语镇代表"童年的恐惧"——孤独、无助、被遗弃</li>
-                    <li>电视人的巢穴象征"媒体的操控"——人们被屏幕控制思想</li>
-                    <li>湖边的房子代表"科学的疯狂"——对人体的亵渎和研究</li>
+                    <li>食客从船的外部来到船上，享用"美餐"</li>
+                    <li>食客的灵魂被 The Lady 吸食</li>
+                    <li>肉体被厨师制成美食，供下一批食客食用</li>
+                    <li>无处不在的<strong>眼睛符号</strong>起到监视器的作用，象征权力和控制</li>
                 </ul>
             </div>
 
             <div class="guide-card">
-                <h3>🔗 两部作品的联系</h3>
+                <h3>🔄 六的双重人格</h3>
+                <p>六（Six）身上存在着两种对立的人格：</p>
                 <ul>
-                    <li><strong>时间线：</strong>第一部发生在前，第二部是前传（Mono 在第一部开头救了六）</li>
-                    <li><strong>六的转变：</strong>从第一部末尾成为"夫人"，到第二部中再次出现，暗示她已经适应了这个世界</li>
+                    <li><strong>童真的小六：</strong>想要逃脱、重见天日，代表内心的孩子</li>
+                    <li><strong>黑暗的小六：</strong>想扼杀心里的孩子，把她永远困住，代表成长后的成人面</li>
+                </ul>
+                <p style="margin-top: 10px;">随着六在贪颚号中不断上升，她对精神的影响力越来越大。最终，童真的小六逐渐从这个世界上消逝，黑暗的小六成为了 The Lady。</p>
+                <div class="tip-box"><strong>💡 开发者原话：</strong>"The child wants to escape and the adult wants to keep the child trapped forever."（孩子想要逃脱，而成人想把孩子永远困住。）</div>
+            </div>
+
+            <div class="guide-card">
+                <h3>📖 两部作品的关联</h3>
+                <ul>
+                    <li><strong>时间线：</strong>第一部发生在后，第二部是前传（Mono 在第一部开头救了六）</li>
+                    <li><strong>DLC结局：</strong>变成小矮人的小男孩把香肠递给六，六吃掉了他——这就是第一部开头的场景</li>
+                    <li><strong>六的转变：</strong>从第一部末尾成为 The Lady，到第二部中六已经适应了这个世界</li>
                     <li><strong>Mono的命运：</strong>第一部中救六的人，在第二部中成为了受害者，形成讽刺</li>
-                    <li><strong>黄色雨衣：</strong>六的雨衣在两部中都是标志性元素，象征她的身份</li>
                 </ul>
             </div>
 
             <div class="guide-card">
-                <h3>❓ 未解之谜</h3>
+                <h3>🔁 永恒的轮回</h3>
+                <p>《小小梦魇》系列的核心主题是<strong>成长的轮回</strong>：</p>
                 <ul>
-                    <li><strong>六的真实身份：</strong>她从哪里来？为什么总是穿着黄色雨衣？</li>
-                    <li><strong>电视人的目的：</strong>他为什么要收集孩子？电视信号有什么特殊力量？</li>
-                    <li><strong>薄暮镇的起源：</strong>这艘船是谁建造的？为什么会有这么多怪物？</li>
-                    <li><strong>黄色雨衣的来历：</strong>雨衣是谁给六的？它有什么特殊意义？</li>
-                    <li><strong>Mono 的帽子：</strong>为什么他永远戴着帽子？帽子下面是什么？</li>
+                    <li>每一个 Mono 又变成另一个 Thin Man</li>
+                    <li>每一个 Six 又变成另一个 The Lady</li>
+                    <li>孩子变成大人，大人又唤醒心里的孩子</li>
+                    <li>世界一直都是这样轮回，永无止息</li>
                 </ul>
-                <div class="tip-box"><strong>💡 开发组提示：</strong>Tarsier Studios 故意留了很多悬念，让玩家自行解读。这些谜团正是游戏魅力的一部分。</div>
+                <p style="margin-top: 10px;">成长不可避免，但童真也无法磨灭——那个无法被打败的孩子永远都会存在于每一个被世界伤害过又变成怪物的大人的梦中。</p>
             </div>
 
             <div class="guide-card">
-                <h3>📖 推荐解读顺序</h3>
-                <ol style="padding-left: 20px;">
-                    <li>先玩第一部，体验六的逃生之旅</li>
-                    <li>再玩第二部，理解六和 Mono 的故事</li>
-                    <li>回头重玩第一部，会发现很多之前没注意的细节</li>
-                    <li>观看官方漫画《Little Nightmares: The Deep》，了解更多背景</li>
-                </ol>
+                <h3>📜 官方漫画彩蛋</h3>
+                <p>官方发布的6篇漫画揭示了更多角色背景：</p>
+                <table>
+                    <tr><th>漫画</th><th>内容</th><th>对应角色</th></tr>
+                    <tr><td>漫画1</td><td>六在森林里躲避猎人，被Mono吸引后被猎人抓走</td><td>六 → The Lady</td></tr>
+                    <tr><td>漫画2</td><td>盲孩子在森林里睡觉，被电视声音吸引后被Thin Man抓走</td><td>盲孩子 → 长臂工人</td></tr>
+                    <tr><td>漫画3</td><td>女学童被学校囚禁，挖隧道逃跑被医生抓走</td><td>女学童 → 女教师</td></tr>
+                    <tr><td>漫画4</td><td>胖孩子遭欺凌，用棒棒糖敲碎别人脑袋后被女老师抓走</td><td>胖孩子 → 厨师</td></tr>
+                    <tr><td>漫画5</td><td>幽灵小孩救受伤老鼠，被看电视的居民抓走</td><td>幽灵小孩 → 医生</td></tr>
+                    <tr><td>漫画6</td><td>Mono在学校被俘虏，逃跑被Thin Man抓，躲进电视机</td><td>Mono → Thin Man</td></tr>
+                </table>
+            </div>
+        </section>
+
+        <!-- ==================== 成就指南 ==================== -->
+        <section id="achievements">
+            <h2 class="section-title">🏆 成就指南</h2>
+
+            <div class="guide-card">
+                <h3>第一部主要成就</h3>
+                <table>
+                    <tr><th>成就名</th><th>达成条件</th><th>难度</th></tr>
+                    <tr><td>逃脱者</td><td>完成游戏</td><td><span class="tag tag-green">简单</span></td></tr>
+                    <tr><td>Highly Sprung</td><td>在特定区域跳跃通过</td><td><span class="tag tag-green">简单</span></td></tr>
+                    <tr><td>Six's Song</td><td>发现并聆听六的歌</td><td><span class="tag tag-yellow">中等</span></td></tr>
+                    <tr><td>Kitchen Hand</td><td>在厨房区域完成特定操作</td><td><span class="tag tag-yellow">中等</span></td></tr>
+                    <tr><td>全收集</td><td>收集所有灯笼、蜡烛和小矮人</td><td><span class="tag">困难</span></td></tr>
+                </table>
+            </div>
+
+            <div class="guide-card">
+                <h3>第二部主要成就</h3>
+                <table>
+                    <tr><th>成就名</th><th>达成条件</th><th>难度</th></tr>
+                    <tr><td>逃窜的猎物</td><td>在森林章节完成特定逃脱</td><td><span class="tag tag-green">简单</span></td></tr>
+                    <tr><td>这里面放了什么！？</td><td>发现隐藏内容</td><td><span class="tag tag-yellow">中等</span></td></tr>
+                    <tr><td>学校的孩子</td><td>在学校章节完成特定目标</td><td><span class="tag tag-yellow">中等</span></td></tr>
+                    <tr><td>全帽子收集</td><td>收集所有帽子</td><td><span class="tag">困难</span></td></tr>
+                    <tr><td>全失灵碎片</td><td>收集所有Glitching Remains</td><td><span class="tag">困难</span></td></tr>
+                    <tr><td>真结局</td><td>达成"共同的未来"结局</td><td><span class="tag tag-blue">需要全收集</span></td></tr>
+                </table>
+            </div>
+
+            <div class="guide-card">
+                <h3>收集品说明</h3>
+                <ul>
+                    <li><strong>灯笼（Lanterns）：</strong>点燃后可照亮黑暗区域，部分用于保存进度</li>
+                    <li><strong>蜡烛（Candles）：</strong>收集一定数量可解锁额外内容</li>
+                    <li><strong>小矮人（Nomes）：</strong>可爱的小生物，收集它们有成就奖励</li>
+                    <li><strong>帽子（Hats）：</strong>第二部中的收集品，不同帽子有不同效果</li>
+                    <li><strong>失灵碎片（Glitching Remains）：</strong>Mono被抓走后留下的灵魂碎片</li>
+                </ul>
             </div>
         </section>
     </div>
 
     <footer class="footer">
-        <p>🌙 小小梦魇攻略站 | Little Nightmares Fan Guide</p>
-        <p style="margin-top: 10px;">本站为非官方粉丝站点，与 Tarsier Studios 和 Bandai Namco 无关</p>
-        <p style="margin-top: 10px;">© 2026 Made with ❤️ by a Little Nightmares fan</p>
+        <p>🌙 小小梦魇攻略站 | Little Nightmares Complete Guide</p>
+        <p style="margin-top: 8px;">本站为非官方粉丝站点，内容与 Tarsier Studios 和 Bandai Namco 无关</p>
+        <p style="margin-top: 8px;">© 2026 Made with ❤️ by a Little Nightmares fan</p>
     </footer>
 
     <script>
-        function toggleAccordion(header) {
-            const content = header.nextElementSibling;
-            const arrow = header.querySelector('span:last-child');
-            content.classList.toggle('active');
-            arrow.textContent = content.classList.contains('active') ? '▲' : '▼';
-        }
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
